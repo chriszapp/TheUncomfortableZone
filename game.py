@@ -1,16 +1,13 @@
 import sys, pygame
 
+# Start the library
 pygame.init()
 
-# Set the environnement of the game
+# Set the screen's size of the game
 size = width, height = 600, 600
-black = 244, 255, 255
 
 # character's speed
 SPEED = 5
-
-# Set is direction
-flip_left = 0
 
 # Start the game and set the screen
 screen = pygame.display.set_mode(size)
@@ -23,7 +20,7 @@ bg = pygame.image.load("./assets/bk.jpeg")
 
 # Function to draw in the window with the character
 def draw_window(player, PLAYER):
-    # Fill the screen and refresh
+    # Fill the screen and refresh the screen
     screen.fill((30, 30, 30))
     # Set the background
     screen.blit(bg, (0, 0))
@@ -59,23 +56,28 @@ def main():
 
         # Define movement on key pressed
         if keys_pressed[pygame.key.key_code("left")] and player.x > 0:
+            # move the player to the left
             player.x -= 5
+            # Turn the player to the left
             PLAYER = pygame.transform.flip(PLAYER_IMAGE, 1, 0)
         if keys_pressed[pygame.key.key_code("right")] and player.x < (width - 100):
+            # move the player to the right
             player.x += 5
+            # Turn the player to the right
             PLAYER = pygame.transform.flip(PLAYER_IMAGE, 0, 0)
+        # Set a jump commande
         if keys_pressed[pygame.key.key_code("space")] and player.y > (top - 20):
             jump = True
 
+        # Code to define jump behavior
         if jump:
             player.y -= 10
         elif not(jump) and player.y < top:
             player.y += 2
-
         if player.y < (top - 40):
             jump = False
 
-
+        # Init draw for the game
         draw_window(player, PLAYER)
 
 # Lauch the game
