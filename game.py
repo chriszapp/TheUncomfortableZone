@@ -32,6 +32,10 @@ def draw_window(player, PLAYER):
 # Game starts
 def main():
 
+    # Set music game
+    pygame.mixer.music.load('./assets/Komiku_-_12_-_Bicycle.mp3')
+    pygame.mixer.music.play(-1)
+
     # Jump boolean to set if the player jump
     jump = False
 
